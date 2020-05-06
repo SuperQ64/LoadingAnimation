@@ -44,7 +44,6 @@ public class flowString extends JPanel implements ActionListener {
         g.setColor(stringColor);
         g.drawString(message,Window.WIDTH+moveX,FONT_SIZE);
         update_X(fm.stringWidth(message));
-        System.out.println("draw");
     }
 
     @Override
