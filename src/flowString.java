@@ -3,20 +3,24 @@ import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class flowString extends JPanel implements ActionListener {
     private final int DELAY = 33;
     private final int FONT_SIZE = 80;
+    private final int SHADOW = 2;
     private int moveX;
     private String message;
     private FontMetrics fm;
     private Timer timer;
     private Font font;
     private Color stringColor;
+    private File fontFile;
+    private String fontName;
 
     public flowString(String message){
         timer = new Timer(DELAY,this);
-        font = new Font("Serif",Font.BOLD,FONT_SIZE);
+        font = new Font("メイリオ",Font.BOLD,FONT_SIZE);
         stringColor = Color.WHITE;
         this.message = message;
         setPreferredSize(new Dimension(Window.WIDTH,FONT_SIZE+20));
@@ -39,10 +43,24 @@ public class flowString extends JPanel implements ActionListener {
 
     @Override
     public void paintComponent(Graphics g){
-        fm = g.getFontMetrics(font);
-        g.setFont(font);
-        g.setColor(stringColor);
-        g.drawString(message,Window.WIDTH+moveX,FONT_SIZE);
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        fm = g2.getFontMetrics(font);
+        g2.setFont(font);
+        g2.setColor(Color.BLACK);
+        /*
+        g2.drawString(message,Window.WIDTH + moveX + SHADOW,FONT_SIZE - SHADOW);
+        g2.drawString(message,Window.WIDTH + moveX ,FONT_SIZE - SHADOW);
+        g2.drawString(message,Window.WIDTH + moveX - SHADOW,FONT_SIZE - SHADOW);
+        g2.drawString(message,Window.WIDTH + moveX - SHADOW,FONT_SIZE + SHADOW);
+        g2.drawString(message,Window.WIDTH + moveX - SHADOW,FONT_SIZE);
+        */
+        g2.drawString(message,Window.WIDTH + moveX + SHADOW,FONT_SIZE);
+        g2.drawString(message,Window.WIDTH + moveX + SHADOW,FONT_SIZE + SHADOW);
+        g2.drawString(message,Window.WIDTH + moveX,FONT_SIZE + SHADOW);
+
+        g2.setColor(stringColor);
+        g2.drawString(message,Window.WIDTH + moveX,FONT_SIZE);
         update_X(fm.stringWidth(message));
     }
 
