@@ -1,28 +1,30 @@
 import javax.sound.sampled.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Music {
-    private Clip clip;
-    /*public Music(String title){
-        clip = createClip(new File(title));
-    }*/
+    private final Clip clip;
 
     public Music(String filename){
-        clip = createClip(new File("./music/"+filename+".wav"));
+        URL url = this.getClass().getResource("./music/" + filename + ".wav");
+        clip = createClip(url);
     }
 
 
-    public static Clip createClip(File file) {
-        try(AudioInputStream ais = AudioSystem.getAudioInputStream(file)){
+    public static Clip createClip(URL url) {
+        try (AudioInputStream ais = AudioSystem.getAudioInputStream(url)){
+
             AudioFormat af = ais.getFormat();
+
             DataLine.Info dataLine = new DataLine.Info(Clip.class,af);
+
             Clip c = (Clip)AudioSystem.getLine(dataLine);
+
             c.open(ais);
+
             return c;
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e){
-            e.printStackTrace();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ignored) {
+
         }
         return null;
     }
