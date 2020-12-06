@@ -6,7 +6,7 @@ public class Music {
     private final Clip clip;
 
     public Music(String filename){
-        URL url = this.getClass().getResource("./music/" + filename + ".wav");
+        URL url = this.getClass().getResource("music/" + filename + ".wav");
         clip = createClip(url);
     }
 
