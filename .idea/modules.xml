@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LoadingAnimetion.iml" filepath="$PROJECT_DIR$/LoadingAnimetion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RollTicker.iml" filepath="$PROJECT_DIR$/RollTicker.iml" />
     </modules>
   </component>
 </project>

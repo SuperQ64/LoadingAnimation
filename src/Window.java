@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * フレームとその他コンポーネントを生成するクラス
+ */
+
 public class Window extends JFrame {
     public static final int WIDTH = 960;
     public static final int HEIGHT = 540;

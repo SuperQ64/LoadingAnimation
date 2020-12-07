@@ -5,8 +5,13 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
+/**
+ * 細かいコンポーネントをこのクラスに表示する。
+ *
+ */
+
 public class Panel extends JPanel implements ActionListener {
-    private final flowString fs;
+    private final TickerPanel tickerPanel;
     private final JButton musicOn;
     private final JButton musicOff;
     private final JButton sendSentence;
@@ -31,7 +36,7 @@ public class Panel extends JPanel implements ActionListener {
         }
 
         String MESSAGE = "Java研開始まで今しばらく";
-        fs = new flowString(MESSAGE);
+        tickerPanel = new TickerPanel(MESSAGE);
         musicOn = new JButton("♪〇");
         musicOff = new JButton("♪×");
         sendSentence = new JButton("update");
@@ -52,7 +57,7 @@ public class Panel extends JPanel implements ActionListener {
         add(jComboBox);
         add(chooser);
         add(colorButton);
-        add(fs);
+        add(tickerPanel);
     }
 
     @Override
@@ -60,11 +65,11 @@ public class Panel extends JPanel implements ActionListener {
         if(e.getSource() == sendSentence){
             String message = textField.getText();
             Font font = fontsMap.get(jComboBox.getSelectedItem());
-            fs.setFont(new Font(font.getName(),font.getStyle(),flowString.FONT_SIZE));
+            tickerPanel.setFont(new Font(font.getName(),font.getStyle(), TickerPanel.FONT_SIZE));
             if (!message.equals("")) {
-                fs.setMessage(message);
+                tickerPanel.setMessage(message);
             } else {
-                fs.setMessage("何か書いて");
+                tickerPanel.setMessage("何か書いて");
             }
             System.out.println((String)jComboBox.getSelectedItem());
 
@@ -78,6 +83,6 @@ public class Panel extends JPanel implements ActionListener {
             Music.stop(Window.BGM.getClip());
 
         if(e.getSource() == colorButton)
-            fs.setStringColor(chooser.getColor());
+            tickerPanel.setStringColor(chooser.getColor());
     }
 }

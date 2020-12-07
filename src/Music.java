@@ -2,6 +2,9 @@ import javax.sound.sampled.*;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * 音楽再生に関するクラス
+ */
 public class Music {
     private final Clip clip;
 
